@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cours - Langly</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <nav class="navbar">
+      <h1 class="logo">Langly</h1>
+      <ul class="nav-links">
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="lessons.html">Cours</a></li>
+        <li><a href="about.html">À propos</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <button id="menu-toggle">☰</button>
+    </nav>
+  </header>
+
+  <!-- Hero Section Cours -->
+  <section class="hero hero-small">
+    <h2>Nos Cours Interactifs 📚</h2>
+    <p>Choisissez votre niveau et commencez à apprendre dès maintenant</p>
+  </section>
+
+  <!-- Filtres de cours -->
+  <section class="filters-section">
+    <div class="filters-container">
+      <div class="filter-group">
+        <label for="language-filter">Langue :</label>
+        <select id="language-filter" class="filter-select">
+          <option value="all">Toutes les langues</option>
+          <option value="english">Anglais</option>
+          <option value="spanish">Espagnol</option>
+          <option value="french">Français</option>
+          <option value="german">Allemand</option>
+          <option value="japanese">Japonais</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label for="level-filter">Niveau :</label>
+        <select id="level-filter" class="filter-select">
+          <option value="all">Tous les niveaux</option>
+          <option value="beginner">Débutant</option>
+          <option value="intermediate">Intermédiaire</option>
+          <option value="advanced">Avancé</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label for="type-filter">Type :</label>
+        <select id="type-filter" class="filter-select">
+          <option value="all">Tous les types</option>
+          <option value="video">Vidéo</option>
+          <option value="audio">Audio</option>
+          <option value="text">Texte</option>
+        </select>
+      </div>
+    </div>
+  </section>
+
+  <!-- Liste des cours -->
+  <section class="lessons-grid">
+    <!-- Cours 1 - Vidéo -->
+    <article class="lesson-card" data-language="english" data-level="beginner" data-type="video">
+      <div class="lesson-thumbnail">
+        <span class="lesson-badge video">🎥 Vidéo</span>
+        <div class="lesson-duration">15 min</div>
+      </div>
+      <div class="lesson-content">
+        <div class="lesson-meta">
+          <span class="lesson-language">🇬🇧 Anglais</span>
+          <span class="lesson-level beginner">Débutant</span>
+        </div>
+        <h3>Les bases de la conversation en anglais</h3>
+        <p>Apprenez les phrases essentielles pour vos premières conversations.</p>
+        <div class="lesson-stats">
+          <span>👥 2,450 élèves</span>
+          <span>⭐ 4.8/5</span>
+        </div>
+        <button class="lesson-btn">Commencer le cours</button>
+      </div>
+    </article>
+
+    <!-- Cours 2 - Audio -->
+    <article class="lesson-card" data-language="spanish" data-level="beginner" data-type="audio">
+      <div class="lesson-thumbnail">
+        <span class="lesson-badge audio">🎧 Audio</span>
+        <div class="lesson-duration">10 min</div>
+      </div>
+      <div class="lesson-content">
+        <div class="lesson-meta">
+          <span class="lesson-language">🇪🇸 Espagnol</span>
+          <span class="lesson-level beginner">Débutant</span>
+        </div>
+        <h3>Prononciation espagnole pour débutants</h3>
+        <p>Maîtrisez les sons de base et l'accent espagnol authentique.</p>
+        <div class="lesson-stats">
+          <span>👥 1,890 élèves</span>
+          <span>⭐ 4.9/5</span>
+        </div>
+        <button class="lesson-btn">Commencer le cours</button>
+      </div>
+    </article>
+
+    <!-- Cours 3 - Vidéo -->
+    <article class="lesson-card" data-language="french" data-level="intermediate" data-type="video">
+      <div class="lesson-thumbnail">
+        <span class="lesson-badge video">🎥 Vidéo</span>
+        <div class="lesson-duration">20 min</div>
+      </div>
+      <div class="lesson-content">
+        <div class="lesson-meta">
+          <span class="lesson-language">🇫🇷 Français</span>
+          <span class="lesson-level intermediate">Intermédiaire</span>
+        </div>
+        <h3>Grammaire française : les temps du passé</h3>
+        <p>Comprenez et utilisez correctement l'imparfait et le passé composé.</p>
+        <div class="lesson-stats">
+          <span>👥 3,120 élèves</span>
+          <span>⭐ 4.7/5</span>
+        </div>
+        <button class="lesson-btn">Commencer le cours</button>
+      </div>
+    </article>
+
+    <!-- Cours 4 - Audio -->
+    <article class="lesson-card" data-language="german" data-level="beginner" data-type="audio">
+      <div class="lesson-thumbnail">
+        <span class="lesson-badge audio">🎧 Audio</span>
+        <div class="lesson-duration">12 min</div>
+      </div>
+      <div class="lesson-content">
+        <div class="lesson-meta">
+          <span class="lesson-language">🇩🇪 Allemand</span>
+          <span class="lesson-level beginner">Débutant</span>
+        </div>
+        <h3>Vocabulaire allemand du quotidien</h3>
+        <p>Les mots et expressions indispensables pour la vie de tous les jours.</p>
+        <div class="lesson-stats">
+          <span>👥 1,560 élèves</span>
+          <span>⭐ 4.6/5</span>
+        </div>
+        <button class="lesson-btn">Commencer le cours</button>
+      </div>
+    </article>
+
+    <!-- Cours 5 - Vidéo -->
+    <article class="lesson-card" data-language="japanese" data-level="beginner" data-type="video">
+      <div class="lesson-thumbnail">
+        <span class="lesson-badge video">🎥 Vidéo</span>
+        <div class="lesson-duration">18 min</div>
+      </div>
+      <div class="lesson-content">
+        <div class="lesson-meta">
+          <span class="lesson-language">🇯🇵 Japonais</span>
+          <span class="lesson-level beginner">Débutant</span>
+        </div>
+        <h3>Hiragana et Katakana : premiers pas</h3>
+        <p>Apprenez les deux systèmes d'écriture de base du japonais.</p>
+        <div class="lesson-stats">
+          <span>👥 2,780 élèves</span>
+          <span>⭐ 4.9/5</span>
+        </div>
+        <button class="lesson-btn">Commencer le cours</button>
+      </div>
+    </article>
+
+    <!-- Cours 6 - Audio -->
+    <article class="lesson-card" data-language="english" data-level="intermediate" data-type="audio">
+      <div class="lesson-thumbnail">
+        <span class="lesson-badge audio">🎧 Audio</span>
+        <div class="lesson-duration">14 min</div>
+      </div>
+      <div class="lesson-content">
+        <div class="lesson-meta">
+          <span class="lesson-language">🇬🇧 Anglais</span>
+          <span class="lesson-level intermediate">Intermédiaire</span>
+        </div>
+        <h3>Business English : réunions professionnelles</h3>
+        <p>Vocabulaire et expressions pour briller dans vos réunions d'affaires.</p>
+        <div class="lesson-stats">
+          <span>👥 1,920 élèves</span>
+          <span>⭐ 4.8/5</span>
+        </div>
+        <button class="lesson-btn">Commencer le cours</button>
+      </div>
+    </article>
+
+    <!-- Cours 7 - Vidéo -->
+    <article class="lesson-card" data-language="spanish" data-level="advanced" data-type="video">
+      <div class="lesson-thumbnail">
+        <span class="lesson-badge video">🎥 Vidéo</span>
+        <div class="lesson-duration">25 min</div>
+      </div>
+      <div class="lesson-content">
+        <div class="lesson-meta">
+          <span class="lesson-language">🇪🇸 Espagnol</span>
+          <span class="lesson-level advanced">Avancé</span>
+        </div>
+        <h3>Espagnol d'Amérique Latine vs. Espagne</h3>
+        <p>Découvrez les différences culturelles et linguistiques.</p>
+        <div class="lesson-stats">
+          <span>👥 1,340 élèves</span>
+          <span>⭐ 4.7/5</span>
+        </div>
+        <button class="lesson-btn">Commencer le cours</button>
+      </div>
+    </article>
+
+    <!-- Cours 8 - Text -->
+    <article class="lesson-card" data-language="french" data-level="beginner" data-type="text">
+      <div class="lesson-thumbnail">
+        <span class="lesson-badge text">📝 Texte</span>
+        <div class="lesson-duration">8 min</div>
+      </div>
+      <div class="lesson-content">
+        <div class="lesson-meta">
+          <span class="lesson-language">🇫🇷 Français</span>
+          <span class="lesson-level beginner">Débutant</span>
+        </div>
+        <h3>L'alphabet français et la prononciation</h3>
+        <p>Guide complet pour prononcer correctement chaque lettre.</p>
+        <div class="lesson-stats">
+          <span>👥 4,200 élèves</span>
+          <span>⭐ 4.9/5</span>
+        </div>
+        <button class="lesson-btn">Commencer le cours</button>
+      </div>
+    </article>
+  </section>
+
+  <!-- Section CTA -->
+  <section class="cta-section">
+    <div class="cta-content">
+      <h2>Prêt à commencer votre voyage linguistique ? 🚀</h2>
+      <p>Rejoignez plus de 50,000 apprenants et transformez votre avenir</p>
+      <a href="#" class="btn">Créer un compte gratuit</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <!-- Section À propos -->
+      <div class="footer-section">
+        <h3>Langly</h3>
+        <p>Apprenez les langues de manière ludique et efficace avec nos cours interactifs gratuits.</p>
+        <div class="social-links">
+          <a href="#" aria-label="Facebook">f</a>
+          <a href="#" aria-label="Twitter">𝕏</a>
+          <a href="#" aria-label="Instagram">📷</a>
+          <a href="#" aria-label="LinkedIn">in</a>
+        </div>
+      </div>
+
+      <!-- Section Liens rapides -->
+      <div class="footer-section">
+        <h3>Liens rapides</h3>
+        <ul class="footer-links">
+          <li><a href="lessons.html">Nos cours</a></li>
+          <li><a href="about.html">À propos</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="#">FAQ</a></li>
+          <li><a href="#">Blog</a></li>
+        </ul>
+      </div>
+
+      <!-- Section Langues -->
+      <div class="footer-section">
+        <h3>Langues populaires</h3>
+        <ul class="footer-links">
+          <li><a href="#">Anglais</a></li>
+          <li><a href="#">Espagnol</a></li>
+          <li><a href="#">Français</a></li>
+          <li><a href="#">Allemand</a></li>
+          <li><a href="#">Japonais</a></li>
+        </ul>
+      </div>
+
+      <!-- Section Newsletter -->
+      <div class="footer-section">
+        <h3>Newsletter</h3>
+        <p>Recevez nos meilleures astuces d'apprentissage</p>
+        <form class="newsletter-form">
+          <input type="email" placeholder="Votre email" required>
+          <button type="submit">S'abonner</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2025 Langly - Tous droits réservés</p>
+      <div class="footer-bottom-links">
+        <a href="#">Conditions d'utilisation</a>
+        <a href="#">Politique de confidentialité</a>
+        <a href="#">Mentions légales</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js" defer></script>
+  <script src="js/lessons.js" defer></script>
+</body>
+</html>

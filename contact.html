@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact - Langly</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <nav class="navbar">
+      <h1 class="logo">Langly</h1>
+      <ul class="nav-links">
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="lessons.html">Cours</a></li>
+        <li><a href="about.html">À propos</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <button id="menu-toggle">☰</button>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero hero-small">
+    <h2>Contactez-Nous 📧</h2>
+    <p>Nous sommes là pour vous aider et répondre à vos questions</p>
+  </section>
+
+  <!-- Section Contact Principale -->
+  <section class="contact-main">
+    <div class="contact-container">
+      <!-- Formulaire de Contact -->
+      <div class="contact-form-wrapper">
+        <h2>Envoyez-nous un Message</h2>
+        <p class="form-description">
+          Remplissez le formulaire ci-dessous et nous vous répondrons dans les plus brefs délais
+        </p>
+        <form class="contact-form" id="contactForm">
+          <div class="form-group">
+            <label for="name">Nom complet *</label>
+            <input 
+              type="text" 
+              id="name" 
+              name="name" 
+              placeholder="Votre nom et prénom" 
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email *</label>
+            <input 
+              type="email" 
+              id="email" 
+              name="email" 
+              placeholder="votre.email@exemple.com" 
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Téléphone</label>
+            <input 
+              type="tel" 
+              id="phone" 
+              name="phone" 
+              placeholder="+225 XX XX XX XX XX"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="subject">Sujet *</label>
+            <select id="subject" name="subject" required>
+              <option value="">Sélectionnez un sujet</option>
+              <option value="question">Question générale</option>
+              <option value="support">Support technique</option>
+              <option value="partnership">Partenariat</option>
+              <option value="feedback">Feedback / Suggestion</option>
+              <option value="other">Autre</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="message">Message *</label>
+            <textarea 
+              id="message" 
+              name="message" 
+              rows="6" 
+              placeholder="Décrivez votre demande en détail..." 
+              required
+            ></textarea>
+          </div>
+
+          <button type="submit" class="submit-btn">
+            <span class="btn-text">Envoyer le message</span>
+            <span class="btn-icon">📤</span>
+          </button>
+        </form>
+      </div>
+
+      <!-- Informations de Contact -->
+      <div class="contact-info-wrapper">
+        <div class="contact-info-card">
+          <h3>Nos Coordonnées</h3>
+          <p class="info-intro">
+            N'hésitez pas à nous contacter par les moyens suivants
+          </p>
+
+          <div class="info-item">
+            <div class="info-icon">📍</div>
+            <div class="info-content">
+              <h4>Adresse</h4>
+              <p>Bingerville, Abidjan<br>Côte d'Ivoire</p>
+            </div>
+          </div>
+
+          <div class="info-item">
+            <div class="info-icon">📧</div>
+            <div class="info-content">
+              <h4>Email</h4>
+              <p><a href="mailto:contact@langly.com">contact@langly.com</a></p>
+              <p><a href="mailto:support@langly.com">support@langly.com</a></p>
+            </div>
+          </div>
+
+          <div class="info-item">
+            <div class="info-icon">📱</div>
+            <div class="info-content">
+              <h4>Téléphone</h4>
+              <p><a href="tel:+2250123456789">+225 01 23 45 67 89</a></p>
+              <p><a href="tel:+2250987654321">+225 09 87 65 43 21</a></p>
+            </div>
+          </div>
+
+          <div class="info-item">
+            <div class="info-icon">⏰</div>
+            <div class="info-content">
+              <h4>Horaires</h4>
+              <p>Lundi - Vendredi : 8h - 18h</p>
+              <p>Samedi : 9h - 14h</p>
+              <p>Dimanche : Fermé</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Réseaux Sociaux -->
+        <div class="social-card">
+          <h3>Suivez-nous</h3>
+          <p>Restez connecté avec nous sur les réseaux sociaux</p>
+          <div class="social-links-large">
+            <a href="#" class="social-link facebook">
+              <span class="social-icon">f</span>
+              <span>Facebook</span>
+            </a>
+            <a href="#" class="social-link twitter">
+              <span class="social-icon">𝕏</span>
+              <span>Twitter</span>
+            </a>
+            <a href="#" class="social-link instagram">
+              <span class="social-icon">📷</span>
+              <span>Instagram</span>
+            </a>
+            <a href="#" class="social-link linkedin">
+              <span class="social-icon">in</span>
+              <span>LinkedIn</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section FAQ Rapide -->
+  <section class="quick-faq">
+    <div class="faq-container">
+      <h2>Questions Fréquentes</h2>
+      <p class="faq-intro">Trouvez rapidement des réponses à vos questions</p>
+      
+      <div class="faq-grid">
+        <div class="faq-item">
+          <div class="faq-question">
+            <span class="faq-icon">❓</span>
+            <h3>Les cours sont-ils vraiment gratuits ?</h3>
+          </div>
+          <p class="faq-answer">
+            Oui ! Tous nos cours de base sont 100% gratuits. Nous croyons que l'éducation 
+            linguistique devrait être accessible à tous.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span class="faq-icon">⏱️</span>
+            <h3>Combien de temps pour voir des résultats ?</h3>
+          </div>
+          <p class="faq-answer">
+            Avec 15-20 minutes par jour, vous verrez des progrès significatifs en 2-3 semaines. 
+            La régularité est la clé du succès !
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span class="faq-icon">📱</span>
+            <h3>Puis-je apprendre sur mobile ?</h3>
+          </div>
+          <p class="faq-answer">
+            Absolument ! Langly est optimisé pour tous les appareils : ordinateurs, tablettes 
+            et smartphones.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span class="faq-icon">🎓</span>
+            <h3>Faut-il des connaissances préalables ?</h3>
+          </div>
+          <p class="faq-answer">
+            Non ! Nos cours sont conçus pour tous les niveaux, du débutant complet à l'avancé. 
+            Commencez où vous êtes !
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section Carte (Optionnel) -->
+  <section class="map-section">
+    <div class="map-container">
+      <h2>Notre Localisation</h2>
+      <div class="map-placeholder">
+        <div class="map-icon">🗺️</div>
+        <p>Bingerville, Abidjan, Côte d'Ivoire</p>
+        <a href="https://maps.google.com" target="_blank" class="map-link">
+          Ouvrir dans Google Maps →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <!-- Section À propos -->
+      <div class="footer-section">
+        <h3>Langly</h3>
+        <p>Apprenez les langues de manière ludique et efficace avec nos cours interactifs gratuits.</p>
+        <div class="social-links">
+          <a href="#" aria-label="Facebook">f</a>
+          <a href="#" aria-label="Twitter">𝕏</a>
+          <a href="#" aria-label="Instagram">📷</a>
+          <a href="#" aria-label="LinkedIn">in</a>
+        </div>
+      </div>
+
+      <!-- Section Liens rapides -->
+      <div class="footer-section">
+        <h3>Liens rapides</h3>
+        <ul class="footer-links">
+          <li><a href="lessons.html">Nos cours</a></li>
+          <li><a href="about.html">À propos</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="#">FAQ</a></li>
+          <li><a href="#">Blog</a></li>
+        </ul>
+      </div>
+
+      <!-- Section Langues -->
+      <div class="footer-section">
+        <h3>Langues populaires</h3>
+        <ul class="footer-links">
+          <li><a href="#">Anglais</a></li>
+          <li><a href="#">Espagnol</a></li>
+          <li><a href="#">Français</a></li>
+          <li><a href="#">Allemand</a></li>
+          <li><a href="#">Japonais</a></li>
+        </ul>
+      </div>
+
+      <!-- Section Newsletter -->
+      <div class="footer-section">
+        <h3>Newsletter</h3>
+        <p>Recevez nos meilleures astuces d'apprentissage</p>
+        <form class="newsletter-form">
+          <input type="email" placeholder="Votre email" required>
+          <button type="submit">S'abonner</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2025 Langly - Tous droits réservés</p>
+      <div class="footer-bottom-links">
+        <a href="#">Conditions d'utilisation</a>
+        <a href="#">Politique de confidentialité</a>
+        <a href="#">Mentions légales</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js" defer></script>
+  <script src="js/contact.js" defer></script>
+</body>
+</html>
