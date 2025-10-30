@@ -1,0 +1,173 @@
+const express = require('express');
+const path = require('path');
+const fs = require('fs');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+const sqlite3 = require('sqlite3').verbose();
+const { open } = require('sqlite');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+
+const app = express();
+const PORT = process.env.PORT || 3000;
+const JWT_SECRET = 'votre_secret_jwt_super_securise'; // À changer en production
+
+// Middleware
+app.use(cors());
+app.use(bodyParser.json());
+
+// Servir les fichiers statiques du site (optionnel) — permet d'utiliser un seul serveur
+app.use(express.static(path.join(__dirname)));
+// --- SQLite setup ---
+const DB_PATH = path.join(__dirname, 'data', 'messages.db');
+let db;
+
+async function initDb() {
+  const dataDir = path.join(__dirname, 'data');
+  if (!fs.existsSync(dataDir)) fs.mkdirSync(dataDir);
+
+  db = await open({ filename: DB_PATH, driver: sqlite3.Database });
+  
+  // Créer la table des messages
+  await db.run(`
+    CREATE TABLE IF NOT EXISTS messages (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      name TEXT NOT NULL,
+      email TEXT NOT NULL,
+      phone TEXT,
+      subject TEXT,
+      message TEXT NOT NULL,
+      receivedAt TEXT NOT NULL
+    )
+  `);
+
+  // Créer la table des utilisateurs
+  await db.run(`
+    CREATE TABLE IF NOT EXISTS users (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      name TEXT NOT NULL,
+      email TEXT UNIQUE NOT NULL,
+      password TEXT NOT NULL,
+      role TEXT DEFAULT 'user',
+      created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    )
+  `);
+
+  // Créer un admin par défaut si aucun n'existe
+  const admin = await db.get("SELECT * FROM users WHERE role = 'admin'");
+  if (!admin) {
+    const adminPassword = await bcrypt.hash('admin123', 10);
+    await db.run(
+      'INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, ?)',
+      ['Admin', 'admin@example.com', adminPassword, 'admin']
+    );
+    console.log('Compte admin créé avec succès');
+  }
+}
+
+// Middleware pour vérifier le JWT
+const authenticateToken = (req, res, next) => {
+  const authHeader = req.headers['authorization'];
+  const token = authHeader && authHeader.split(' ')[1];
+
+  if (!token) {
+    return res.status(401).json({ error: 'Token manquant' });
+  }
+
+  jwt.verify(token, JWT_SECRET, (err, user) => {
+    if (err) {
+      return res.status(403).json({ error: 'Token invalide' });
+    }
+    req.user = user;
+    next();
+  });
+};
+
+// Middleware pour vérifier le rôle admin
+const isAdmin = (req, res, next) => {
+  if (req.user.role !== 'admin') {
+    return res.status(403).json({ error: 'Accès refusé' });
+  }
+  next();
+};
+    return res.status(401).send('Authentication required.');
+  
+
+  const parts = auth.split(' ');
+  if (parts.length !== 2 || parts[0] !== 'Basic') {
+    return res.status(400).send('Bad authorization format.');
+  }
+
+  const decoded = Buffer.from(parts[1], 'base64').toString();
+  const [user, pass] = decoded.split(':');
+
+  if (user === ADMIN_USER && pass === ADMIN_PASS) return next();
+
+  res.set('WWW-Authenticate', 'Basic realm="Admin"');
+  return res.status(401).send('Invalid credentials.');
+
+
+// Endpoint pour recevoir les messages de contact — sauvegarde en SQLite
+app.post('/api/contact', async (req, res) => {
+  const { name, email, phone, subject, message } = req.body || {};
+
+  // Validation simple
+  if (!name || !email || !message) {
+    return res.status(400).json({ success: false, error: 'Champs requis manquants (name, email, message).' });
+  }
+
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email)) {
+    return res.status(400).json({ success: false, error: 'Email invalide.' });
+  }
+
+  try {
+    const receivedAt = new Date().toISOString();
+    const result = await db.run(
+      `INSERT INTO messages (name, email, phone, subject, message, receivedAt) VALUES (?, ?, ?, ?, ?, ?)`,
+      [String(name).trim(), String(email).trim(), phone ? String(phone).trim() : null, subject || null, String(message).trim(), receivedAt]
+    );
+
+    const inserted = await db.get('SELECT * FROM messages WHERE id = ?', result.lastID);
+    return res.json({ success: true, data: inserted });
+  } catch (err) {
+    console.error('Erreur lors de l\'insertion en DB :', err);
+    return res.status(500).json({ success: false, error: 'Erreur interne du serveur.' });
+  }
+});
+
+// Endpoint pour récupérer les messages (protégé par basic auth)
+app.get('/api/messages', basicAuth, async (req, res) => {
+  try {
+    const search = req.query.search ? `%${req.query.search}%` : null;
+    let rows;
+    if (search) {
+      rows = await db.all(
+        `SELECT * FROM messages WHERE name LIKE ? OR email LIKE ? OR subject LIKE ? OR message LIKE ? ORDER BY receivedAt DESC`,
+        [search, search, search, search]
+      );
+    } else {
+      rows = await db.all(`SELECT * FROM messages ORDER BY receivedAt DESC`);
+    }
+    res.json({ success: true, data: rows });
+  } catch (err) {
+    console.error('Erreur récupération messages :', err);
+    res.status(500).json({ success: false, error: 'Erreur serveur.' });
+  }
+});
+
+// Simple health check
+app.get('/api/health', (req, res) => {
+  res.json({ ok: true, env: process.env.NODE_ENV || 'development' });
+});
+
+// Initialise la DB puis démarre le serveur
+initDb().then(() => {
+  app.listen(PORT, () => {
+    console.log(`Server started on http://localhost:${PORT}`);
+    console.log('Serving static files from', __dirname);
+  });
+}).catch(err => {
+  console.error('Failed to initialize DB:', err);
+  process.exit(1);
+});

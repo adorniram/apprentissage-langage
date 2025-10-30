@@ -266,8 +266,8 @@ header {
 
 /* Footer */
 footer {
-  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
-  color: var(--white);
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  color: white;
   margin-top: 5rem;
   position: relative;
   overflow: hidden;
@@ -280,7 +280,7 @@ footer::before {
   left: 0;
   right: 0;
   height: 4px;
-  background: var(--gradient);
+  background: linear-gradient(90deg, #ec4899 0%, #f59e0b 100%);
 }
 
 footer::after {
@@ -290,7 +290,7 @@ footer::after {
   right: -10%;
   width: 500px;
   height: 500px;
-  background: radial-gradient(circle, rgba(99, 102, 241, 0.1) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
   border-radius: 50%;
 }
 
@@ -309,16 +309,14 @@ footer::after {
   font-size: 1.3rem;
   margin-bottom: 1.5rem;
   font-weight: 700;
-  background: var(--gradient);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: white;
 }
 
 .footer-section p {
-  opacity: 0.8;
+  opacity: 0.9;
   line-height: 1.8;
   margin-bottom: 1rem;
+  color: white;
 }
 
 .footer-links {
@@ -330,9 +328,9 @@ footer::after {
 }
 
 .footer-links a {
-  color: var(--white);
+  color: white;
   text-decoration: none;
-  opacity: 0.8;
+  opacity: 0.9;
   transition: all 0.3s ease;
   display: inline-block;
   position: relative;
@@ -345,12 +343,13 @@ footer::after {
   left: -20px;
   opacity: 0;
   transition: all 0.3s ease;
+  color: white;
 }
 
 .footer-links a:hover {
   opacity: 1;
-  color: var(--primary);
   padding-left: 20px;
+  transform: translateX(3px);
 }
 
 .footer-links a:hover::before {
@@ -367,22 +366,23 @@ footer::after {
 .social-links a {
   width: 45px;
   height: 45px;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.2);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   text-decoration: none;
-  color: var(--white);
+  color: white;
   font-size: 1.3rem;
   transition: all 0.3s ease;
   backdrop-filter: blur(10px);
 }
 
 .social-links a:hover {
-  background: var(--gradient);
+  background: white;
+  color: var(--primary);
   transform: translateY(-5px) rotate(5deg);
-  box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
 .newsletter-form {
@@ -394,31 +394,31 @@ footer::after {
 .newsletter-form input {
   flex: 1;
   padding: 0.8rem 1rem;
-  border: 2px solid rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.3);
   border-radius: 10px;
-  background: rgba(255, 255, 255, 0.05);
-  color: var(--white);
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
   font-size: 0.95rem;
   transition: all 0.3s ease;
   backdrop-filter: blur(10px);
 }
 
 .newsletter-form input::placeholder {
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .newsletter-form input:focus {
   outline: none;
-  border-color: var(--primary);
-  background: rgba(255, 255, 255, 0.1);
+  border-color: white;
+  background: rgba(255, 255, 255, 0.2);
 }
 
 .newsletter-form button {
   padding: 0.8rem 1.5rem;
-  background: var(--gradient);
+  background: white;
   border: none;
   border-radius: 10px;
-  color: var(--white);
+  color: var(--primary);
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -427,11 +427,11 @@ footer::after {
 
 .newsletter-form button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
 .footer-bottom {
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
   padding: 2rem;
   text-align: center;
   margin-top: 3rem;
@@ -440,8 +440,9 @@ footer::after {
 }
 
 .footer-bottom p {
-  opacity: 0.7;
+  opacity: 0.9;
   font-size: 0.95rem;
+  color: white;
 }
 
 .footer-bottom-links {
@@ -453,16 +454,16 @@ footer::after {
 }
 
 .footer-bottom-links a {
-  color: var(--white);
+  color: white;
   text-decoration: none;
-  opacity: 0.7;
+  opacity: 0.9;
   font-size: 0.9rem;
   transition: all 0.3s ease;
 }
 
 .footer-bottom-links a:hover {
   opacity: 1;
-  color: var(--primary);
+  text-decoration: underline;
 }
 
 /* Animations */
@@ -1586,7 +1587,473 @@ footer::after {
   }
 }
 
-@media (max-width: 480px) {
+/* ===== MODE SOMBRE ===== */
+
+/* Bouton de basculement du mode sombre */
+.dark-mode-toggle {
+  position: fixed;
+  top: 100px;
+  right: 1rem;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: var(--white);
+  border: 2px solid #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  z-index: 1100;
+}
+
+.dark-mode-toggle:hover {
+  transform: scale(1.1) rotate(15deg);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.toggle-icon {
+  font-size: 1.5rem;
+  transition: transform 0.3s ease;
+}
+
+.dark-mode-toggle:hover .toggle-icon {
+  transform: rotate(-15deg);
+}
+
+/* Variables pour le mode sombre */
+body.dark-mode {
+  /* Couleurs inversées et adaptées */
+  --primary: #818cf8;
+  --primary-dark: #6366f1;
+  --secondary: #a78bfa;
+  --accent: #f472b6;
+  --dark: #f1f5f9;
+  --light: #0f172a;
+  --gray: #94a3b8;
+  --white: #1e293b;
+  --shadow: rgba(0, 0, 0, 0.4);
+  --shadow-lg: rgba(0, 0, 0, 0.6);
+  --gradient: linear-gradient(135deg, #818cf8 0%, #a78bfa 100%);
+  
+  background-color: #0f172a;
+  color: #f1f5f9;
+}
+
+/* ===== HEADER & NAVIGATION ===== */
+body.dark-mode header {
+  background: rgba(30, 41, 59, 0.95);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .navbar {
+  background: transparent;
+}
+
+body.dark-mode .logo {
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+body.dark-mode .nav-links a {
+  color: #e2e8f0;
+}
+
+body.dark-mode .nav-links a:hover {
+  color: var(--primary);
+}
+
+body.dark-mode .nav-links a.active-page {
+  color: var(--primary);
+}
+
+body.dark-mode #menu-toggle {
+  color: #e2e8f0;
+}
+
+/* Navigation mobile en mode sombre */
+body.dark-mode .nav-links {
+  background: #1e293b;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ===== HERO SECTION ===== */
+body.dark-mode .hero {
+  background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+  color: #f1f5f9;
+}
+
+body.dark-mode .hero::before {
+  opacity: 0.15;
+}
+
+body.dark-mode .hero h2,
+body.dark-mode .hero p {
+  color: #f1f5f9;
+}
+
+body.dark-mode .btn {
+  background: var(--gradient);
+  color: white;
+  box-shadow: 0 10px 30px rgba(129, 140, 248, 0.3);
+}
+
+body.dark-mode .btn:hover {
+  box-shadow: 0 15px 40px rgba(129, 140, 248, 0.4);
+}
+
+/* ===== CARTES & SECTIONS ===== */
+body.dark-mode .feature,
+body.dark-mode .lesson-card,
+body.dark-mode .mission-box,
+body.dark-mode .team-member,
+body.dark-mode .testimonial-card,
+body.dark-mode .contact-form-wrapper,
+body.dark-mode .contact-info-card,
+body.dark-mode .social-card,
+body.dark-mode .faq-item,
+body.dark-mode .stat-item {
+  background: #1e293b;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .feature:hover,
+body.dark-mode .lesson-card:hover,
+body.dark-mode .mission-box:hover,
+body.dark-mode .team-member:hover,
+body.dark-mode .testimonial-card:hover {
+  background: #334155;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+}
+
+body.dark-mode .feature h3,
+body.dark-mode .lesson-content h3,
+body.dark-mode .mission-box h3,
+body.dark-mode .team-member h3,
+body.dark-mode .testimonial-card h3,
+body.dark-mode .contact-info-card h3,
+body.dark-mode .social-card h3,
+body.dark-mode .faq-question h3 {
+  color: #f1f5f9;
+}
+
+body.dark-mode .feature p,
+body.dark-mode .lesson-content p,
+body.dark-mode .mission-box p,
+body.dark-mode .testimonial-text {
+  color: #cbd5e1;
+}
+
+/* ===== FORMULAIRES ===== */
+body.dark-mode .form-group input,
+body.dark-mode .form-group select,
+body.dark-mode .form-group textarea,
+body.dark-mode .filter-select,
+body.dark-mode .newsletter-form input {
+  background: #0f172a;
+  border-color: #334155;
+  color: #f1f5f9;
+}
+
+body.dark-mode .form-group input:focus,
+body.dark-mode .form-group select:focus,
+body.dark-mode .form-group textarea:focus,
+body.dark-mode .filter-select:focus,
+body.dark-mode .newsletter-form input:focus {
+  border-color: var(--primary);
+  background: #1e293b;
+  box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.2);
+}
+
+body.dark-mode .form-group input::placeholder,
+body.dark-mode .form-group textarea::placeholder,
+body.dark-mode .newsletter-form input::placeholder {
+  color: #64748b;
+}
+
+body.dark-mode .form-group label {
+  color: #e2e8f0;
+}
+
+/* ===== BOUTONS ===== */
+body.dark-mode .lesson-btn,
+body.dark-mode .submit-btn,
+body.dark-mode .newsletter-form button {
+  background: var(--gradient);
+  color: white;
+}
+
+body.dark-mode .lesson-btn:hover,
+body.dark-mode .submit-btn:hover,
+body.dark-mode .newsletter-form button:hover {
+  box-shadow: 0 10px 30px rgba(129, 140, 248, 0.4);
+}
+
+/* ===== SECTIONS AVEC FOND ===== */
+body.dark-mode .filters-section {
+  background: #1e293b;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .mission-vision,
+body.dark-mode .testimonials-section,
+body.dark-mode .quick-faq {
+  background: rgba(15, 23, 42, 0.5);
+}
+
+body.dark-mode .cta-section {
+  background: var(--gradient);
+}
+
+body.dark-mode .cta-content h2,
+body.dark-mode .cta-content p {
+  color: white;
+}
+
+/* ===== BADGES & LABELS ===== */
+body.dark-mode .lesson-badge.video {
+  background: rgba(236, 72, 153, 0.9);
+}
+
+body.dark-mode .lesson-badge.audio {
+  background: rgba(139, 92, 246, 0.9);
+}
+
+body.dark-mode .lesson-badge.text {
+  background: rgba(129, 140, 248, 0.9);
+}
+
+body.dark-mode .lesson-level.beginner {
+  background: rgba(34, 197, 94, 0.2);
+  color: #86efac;
+}
+
+body.dark-mode .lesson-level.intermediate {
+  background: rgba(251, 191, 36, 0.2);
+  color: #fde047;
+}
+
+body.dark-mode .lesson-level.advanced {
+  background: rgba(239, 68, 68, 0.2);
+  color: #fca5a5;
+}
+
+body.dark-mode .lesson-language,
+body.dark-mode .lesson-stats {
+  color: #94a3b8;
+}
+
+/* ===== STATISTIQUES ===== */
+body.dark-mode .stat-number {
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+body.dark-mode .stat-label {
+  color: #94a3b8;
+}
+
+/* ===== TÉMOIGNAGES ===== */
+body.dark-mode .testimonial-author strong {
+  color: #f1f5f9;
+}
+
+body.dark-mode .testimonial-author span {
+  color: #94a3b8;
+}
+
+/* ===== IMAGES & OVERLAYS ===== */
+body.dark-mode .image-overlay {
+  background: linear-gradient(to top, rgba(15, 23, 42, 0.95), transparent);
+}
+
+body.dark-mode .lesson-thumbnail {
+  background: var(--gradient);
+}
+
+body.dark-mode .lesson-duration {
+  background: rgba(15, 23, 42, 0.9);
+}
+
+/* ===== LIENS ===== */
+body.dark-mode .info-content a {
+  color: var(--primary);
+}
+
+body.dark-mode .info-content a:hover {
+  color: #a78bfa;
+}
+
+/* ===== RÉSEAUX SOCIAUX ===== */
+body.dark-mode .social-link {
+  background: rgba(129, 140, 248, 0.1);
+  color: #f1f5f9;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .social-link:hover {
+  background: var(--gradient);
+  color: white;
+}
+
+body.dark-mode .social-icon {
+  background: #334155;
+}
+
+body.dark-mode .social-link:hover .social-icon {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+body.dark-mode .social-links a {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+body.dark-mode .social-links a:hover {
+  background: var(--gradient);
+}
+
+/* ===== FOOTER ===== */
+body.dark-mode footer {
+  background: linear-gradient(135deg, #0f172a 0%, #020617 100%);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode footer::before {
+  background: var(--gradient);
+}
+
+body.dark-mode .footer-section h3 {
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+body.dark-mode .footer-section p,
+body.dark-mode .footer-links a,
+body.dark-mode .footer-bottom p,
+body.dark-mode .footer-bottom-links a {
+  color: #cbd5e1;
+}
+
+body.dark-mode .footer-links a:hover,
+body.dark-mode .footer-bottom-links a:hover {
+  color: var(--primary);
+}
+
+/* ===== CARTE DE LOCALISATION ===== */
+body.dark-mode .map-placeholder {
+  background: var(--gradient);
+}
+
+body.dark-mode .map-link {
+  background: #1e293b;
+  color: var(--primary);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .map-link:hover {
+  background: #334155;
+}
+
+/* ===== BOUTONS UTILITAIRES ===== */
+body.dark-mode .dark-mode-toggle {
+  background: #1e293b;
+  border-color: #334155;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .scroll-to-top {
+  background: var(--primary);
+  box-shadow: 0 8px 24px rgba(129, 140, 248, 0.4);
+}
+
+body.dark-mode .scroll-to-top:hover {
+  box-shadow: 0 12px 32px rgba(129, 140, 248, 0.5);
+}
+
+/* ===== ANIMATIONS & TRANSITIONS ===== */
+body,
+header,
+.feature,
+.lesson-card,
+.mission-box,
+.team-member,
+.testimonial-card,
+.contact-form-wrapper,
+.contact-info-card,
+.social-card,
+.faq-item,
+.stat-item,
+footer,
+.form-group input,
+.form-group select,
+.form-group textarea {
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* ===== AUTRES ÉLÉMENTS ===== */
+body.dark-mode .story-intro {
+  background: rgba(129, 140, 248, 0.1);
+  border-left-color: var(--primary);
+}
+
+body.dark-mode .story-content h2,
+body.dark-mode .faq-container h2,
+body.dark-mode .team-section h2,
+body.dark-mode .testimonials-section h2,
+body.dark-mode .map-container h2,
+body.dark-mode .contact-form-wrapper h2 {
+  color: #f1f5f9;
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+body.dark-mode .story-content p,
+body.dark-mode .form-description,
+body.dark-mode .info-intro,
+body.dark-mode .team-intro,
+body.dark-mode .faq-intro,
+body.dark-mode .member-bio,
+body.dark-mode .faq-answer {
+  color: #cbd5e1;
+}
+
+body.dark-mode .member-role {
+  color: var(--primary);
+}
+
+body.dark-mode .info-item {
+  border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .info-content h4 {
+  color: #f1f5f9;
+}
+
+body.dark-mode .footer-bottom {
+  border-top-color: rgba(255, 255, 255, 0.1);
+}
+
+/* ===== RESPONSIVE - MODE SOMBRE ===== */
+@media (max-width: 768px) {
+  body.dark-mode .dark-mode-toggle {
+    top: 90px;
+    right: 0.8rem;
+    width: 45px;
+    height: 45px;
+  }
+}
   .navbar {
     padding: 1rem;
   }
@@ -1603,4 +2070,3 @@ footer::after {
     padding: 0.9rem 2rem;
     font-size: 1rem;
   }
-}
