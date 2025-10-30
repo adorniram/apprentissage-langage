@@ -1,70 +1,76 @@
-// js/main.js — interactions simples (menu mobile, année, validation formulaire)
+// ===== MODE SOMBRE =====
+const initDarkMode = () => {
+  // Créer le bouton de mode sombre
+  const darkModeToggle = document.createElement('button');
+  darkModeToggle.className = 'dark-mode-toggle';
+  darkModeToggle.setAttribute('aria-label', 'Basculer le mode sombre');
+  darkModeToggle.innerHTML = '<span class="toggle-icon">🌙</span>';
+  document.body.appendChild(darkModeToggle);
 
-document.addEventListener('DOMContentLoaded', function(){
-  // année dans le footer
-  const yearEl = document.getElementById('year');
-  if(yearEl) yearEl.textContent = new Date().getFullYear();
-
-  // menu toggle (mobile)
-  const navToggle = document.querySelector('.nav-toggle');
-  const mainNav = document.getElementById('main-nav');
-  if(navToggle && mainNav){
-    navToggle.addEventListener('click', function(){
-      const expanded = this.getAttribute('aria-expanded') === 'true';
-      this.setAttribute('aria-expanded', String(!expanded));
-      mainNav.style.display = expanded ? 'none' : 'block';
-    });
+  // Vérifier la préférence sauvegardée
+  const savedTheme = localStorage.getItem('theme');
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  
+  if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+    enableDarkMode();
   }
 
-  // validation simple du formulaire
-  const form = document.getElementById('contact-form');
-  if(form){
-    form.addEventListener('submit', function(e){
-      e.preventDefault();
-      const name = document.getElementById('name').value.trim();
-      const email = document.getElementById('email').value.trim();
-      const message = document.getElementById('message').value.trim();
-      if(!name || !email || !message){
-        alert('Veuillez remplir tous les champs avant d\'envoyer.');
-        return;
-      }
-      alert('Merci ' + name + " — le formulaire est un exemple côté client.");
-      form.reset();
-    });
-  }
-});
-
-
-// ===== MENU MOBILE =====
-const menuToggle = document.getElementById('menu-toggle');
-const navLinks = document.querySelector('.nav-links');
-
-if (menuToggle) {
-  menuToggle.addEventListener('click', () => {
-    navLinks.classList.toggle('active');
-    
-    // Animation de l'icône hamburger
-    const icon = menuToggle.textContent;
-    menuToggle.textContent = icon === '☰' ? '✕' : '☰';
-  });
-
-  // Fermer le menu lors du clic sur un lien
-  const links = navLinks.querySelectorAll('a');
-  links.forEach(link => {
-    link.addEventListener('click', () => {
-      navLinks.classList.remove('active');
-      menuToggle.textContent = '☰';
-    });
-  });
-
-  // Fermer le menu lors du clic à l'extérieur
-  document.addEventListener('click', (e) => {
-    if (!e.target.closest('.navbar')) {
-      navLinks.classList.remove('active');
-      menuToggle.textContent = '☰';
+  // Événement de clic sur le bouton
+  darkModeToggle.addEventListener('click', () => {
+    if (document.body.classList.contains('dark-mode')) {
+      disableDarkMode();
+    } else {
+      enableDarkMode();
     }
   });
-}
+
+  // Fonction pour activer le mode sombre
+  function enableDarkMode() {
+    document.body.classList.add('dark-mode');
+    darkModeToggle.querySelector('.toggle-icon').textContent = '☀️';
+    localStorage.setItem('theme', 'dark');
+  }
+
+  // Fonction pour désactiver le mode sombre
+  function disableDarkMode() {
+    document.body.classList.remove('dark-mode');
+    darkModeToggle.querySelector('.toggle-icon').textContent = '🌙';
+    localStorage.setItem('theme', 'light');
+  }
+};
+
+// ===== MENU MOBILE =====
+const initMobileMenu = () => {
+  const menuToggle = document.getElementById('menu-toggle');
+  const navLinks = document.querySelector('.nav-links');
+
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+      
+      // Animation de l'icône hamburger
+      const icon = menuToggle.textContent;
+      menuToggle.textContent = icon === '☰' ? '✕' : '☰';
+    });
+
+    // Fermer le menu lors du clic sur un lien
+    const links = navLinks.querySelectorAll('a');
+    links.forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+        menuToggle.textContent = '☰';
+      });
+    });
+
+    // Fermer le menu lors du clic à l'extérieur
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.navbar')) {
+        navLinks.classList.remove('active');
+        menuToggle.textContent = '☰';
+      }
+    });
+  }
+};
 
 // ===== INDICATEUR DE PAGE ACTIVE =====
 const setActivePage = () => {
@@ -121,9 +127,9 @@ const initSmoothScroll = () => {
 
 // ===== NEWSLETTER FORM =====
 const handleNewsletterForm = () => {
-  const form = document.querySelector('.newsletter-form');
+  const forms = document.querySelectorAll('.newsletter-form');
   
-  if (form) {
+  forms.forEach(form => {
     form.addEventListener('submit', (e) => {
       e.preventDefault();
       const emailInput = form.querySelector('input[type="email"]');
@@ -147,12 +153,14 @@ const handleNewsletterForm = () => {
         console.log('Email inscrit:', email);
       }
     });
-  }
+  });
 };
 
 // ===== NAVBAR SCROLL EFFECT =====
 const handleNavbarScroll = () => {
   const navbar = document.querySelector('header');
+  if (!navbar) return;
+  
   let lastScroll = 0;
   
   window.addEventListener('scroll', () => {
@@ -164,13 +172,6 @@ const handleNavbarScroll = () => {
     } else {
       navbar.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
     }
-    
-    // Cacher la navbar lors du scroll vers le bas (optionnel)
-    // if (currentScroll > lastScroll && currentScroll > 100) {
-    //   navbar.style.transform = 'translateY(-100%)';
-    // } else {
-    //   navbar.style.transform = 'translateY(0)';
-    // }
     
     lastScroll = currentScroll;
   });
@@ -230,19 +231,6 @@ const createScrollToTopButton = () => {
   });
 };
 
-// ===== PROTECTION DES CLICS RAPIDES =====
-const debounce = (func, wait) => {
-  let timeout;
-  return function executedFunction(...args) {
-    const later = () => {
-      clearTimeout(timeout);
-      func(...args);
-    };
-    clearTimeout(timeout);
-    timeout = setTimeout(later, wait);
-  };
-};
-
 // ===== ANIMATIONS AU HOVER DES FEATURES =====
 const enhanceFeatureCards = () => {
   const features = document.querySelectorAll('.feature');
@@ -258,8 +246,18 @@ const enhanceFeatureCards = () => {
   });
 };
 
+// ===== ANNÉE DANS LE FOOTER =====
+const updateYear = () => {
+  const yearEl = document.getElementById('year');
+  if (yearEl) {
+    yearEl.textContent = new Date().getFullYear();
+  }
+};
+
 // ===== INITIALISATION =====
 document.addEventListener('DOMContentLoaded', () => {
+  initDarkMode();
+  initMobileMenu();
   setActivePage();
   observeElements();
   initSmoothScroll();
@@ -268,6 +266,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initPageTransition();
   createScrollToTopButton();
   enhanceFeatureCards();
+  updateYear();
   
   console.log('🎯 Langly chargé avec succès!');
 });
@@ -278,11 +277,13 @@ window.addEventListener('error', (e) => {
 });
 
 // ===== PERFORMANCE =====
-// Lazy loading pour les images (si vous en ajoutez)
+// Lazy loading pour les images
 if ('loading' in HTMLImageElement.prototype) {
   const images = document.querySelectorAll('img[loading="lazy"]');
   images.forEach(img => {
-    img.src = img.dataset.src;
+    if (img.dataset.src) {
+      img.src = img.dataset.src;
+    }
   });
 } else {
   // Fallback pour les navigateurs plus anciens

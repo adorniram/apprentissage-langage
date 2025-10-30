@@ -85,23 +85,30 @@ async function handleFormSubmit(e) {
   }
 }
 
-// ===== FONCTION D'ENVOI (à personnaliser) =====
+// ===== FONCTION D'ENVOI (vers le backend local) =====
+const API_BASE = (location.protocol === 'file:' ? 'http://localhost:3000' : '');
+
 async function sendMessage(data) {
-  // Simuler un délai d'envoi
-  await new Promise(resolve => setTimeout(resolve, 2000));
-  
-  // ICI : Ajoutez votre logique d'envoi réelle
-  // Exemples :
-  // - Envoi via EmailJS
-  // - Envoi vers votre API backend
-  // - Envoi via un service tiers
-  
-  console.log('Message envoyé:', data);
-  
-  // Pour tester une erreur, décommentez :
-  // throw new Error('Test erreur');
-  
-  return true;
+  try {
+    const res = await fetch(API_BASE + '/api/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err.error || 'Erreur lors de l\'envoi');
+    }
+
+    const json = await res.json();
+    console.log('Réponse serveur:', json);
+    return json;
+  } catch (error) {
+    console.error('Erreur sendMessage:', error);
+    // Remonter erreur utile au front
+    throw new Error(error.message || 'Erreur réseau');
+  }
 }
 
 // ===== VALIDATION DU FORMULAIRE =====

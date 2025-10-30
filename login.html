@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Connexion - Langly</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    .auth-container {
+      max-width: 400px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+    .auth-tabs {
+      display: flex;
+      margin-bottom: 2rem;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .auth-tab {
+      flex: 1;
+      padding: 1rem;
+      text-align: center;
+      background: #f1f5f9;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .auth-tab.active {
+      background: var(--primary);
+      color: white;
+    }
+    .auth-form {
+      display: none;
+    }
+    .auth-form.active {
+      display: block;
+      animation: fadeIn 0.5s ease;
+    }
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+    }
+    .form-group input {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      border: 2px solid #e2e8f0;
+      border-radius: 10px;
+      font-size: 1rem;
+      transition: border-color 0.3s ease;
+    }
+    .form-group input:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+    .auth-btn {
+      width: 100%;
+      padding: 1rem;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.3s ease, background 0.3s ease;
+    }
+    .auth-btn:hover {
+      transform: translateY(-2px);
+      background: var(--primary-dark);
+    }
+    .auth-separator {
+      margin: 2rem 0;
+      display: flex;
+      align-items: center;
+      text-align: center;
+      color: var(--gray);
+    }
+    .auth-separator::before,
+    .auth-separator::after {
+      content: '';
+      flex: 1;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .auth-separator span {
+      padding: 0 1rem;
+    }
+    .social-auth {
+      display: grid;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .social-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.8rem;
+      background: white;
+      border: 2px solid #e2e8f0;
+      border-radius: 10px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .social-btn:hover {
+      background: #f8fafc;
+      transform: translateY(-2px);
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <nav class="navbar">
+      <h1 class="logo">Langly</h1>
+      <ul class="nav-links">
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="lessons.html">Cours</a></li>
+        <li><a href="about.html">À propos</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <button id="menu-toggle">☰</button>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero hero-small">
+    <h2>Connectez-vous 👋</h2>
+    <p>Rejoignez notre communauté d'apprenants</p>
+  </section>
+
+  <!-- Auth Container -->
+  <div class="auth-container">
+    <!-- Tabs -->
+    <div class="auth-tabs">
+      <div class="auth-tab active" data-form="login">Connexion</div>
+      <div class="auth-tab" data-form="register">Inscription</div>
+    </div>
+
+    <!-- Login Form -->
+    <form id="loginForm" class="auth-form active">
+      <div class="form-group">
+        <label for="loginEmail">Email</label>
+        <input type="email" id="loginEmail" name="email" required>
+      </div>
+      <div class="form-group">
+        <label for="loginPassword">Mot de passe</label>
+        <input type="password" id="loginPassword" name="password" required>
+      </div>
+      <button type="submit" class="auth-btn">Se connecter</button>
+      
+      <div class="auth-separator">
+        <span>ou continuer avec</span>
+      </div>
+      
+      <div class="social-auth">
+        <button type="button" class="social-btn">
+          <img src="assets/images/google.svg" alt="Google" width="20">
+          <span>Google</span>
+        </button>
+      </div>
+    </form>
+
+    <!-- Register Form -->
+    <form id="registerForm" class="auth-form">
+      <div class="form-group">
+        <label for="registerName">Nom complet</label>
+        <input type="text" id="registerName" name="name" required>
+      </div>
+      <div class="form-group">
+        <label for="registerEmail">Email</label>
+        <input type="email" id="registerEmail" name="email" required>
+      </div>
+      <div class="form-group">
+        <label for="registerPassword">Mot de passe</label>
+        <input type="password" id="registerPassword" name="password" required>
+      </div>
+      <div class="form-group">
+        <label for="registerConfirmPassword">Confirmer le mot de passe</label>
+        <input type="password" id="registerConfirmPassword" name="confirmPassword" required>
+      </div>
+      <button type="submit" class="auth-btn">S'inscrire</button>
+      
+      <div class="auth-separator">
+        <span>ou continuer avec</span>
+      </div>
+      
+      <div class="social-auth">
+        <button type="button" class="social-btn">
+          <img src="assets/images/google.svg" alt="Google" width="20">
+          <span>Google</span>
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <!-- Section À propos -->
+      <div class="footer-section">
+        <h3>Langly</h3>
+        <p>Apprenez les langues de manière ludique et efficace avec nos cours interactifs gratuits.</p>
+        <div class="social-links">
+          <a href="#" aria-label="Facebook">f</a>
+          <a href="#" aria-label="Twitter">𝕏</a>
+          <a href="#" aria-label="Instagram">📷</a>
+          <a href="#" aria-label="LinkedIn">in</a>
+        </div>
+      </div>
+
+      <!-- Section Liens rapides -->
+      <div class="footer-section">
+        <h3>Liens rapides</h3>
+        <ul class="footer-links">
+          <li><a href="lessons.html">Nos cours</a></li>
+          <li><a href="about.html">À propos</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="#">FAQ</a></li>
+          <li><a href="#">Blog</a></li>
+        </ul>
+      </div>
+
+      <!-- Section Newsletter -->
+      <div class="footer-section">
+        <h3>Newsletter</h3>
+        <p>Recevez nos meilleures astuces d'apprentissage</p>
+        <form class="newsletter-form">
+          <input type="email" placeholder="Votre email" required>
+          <button type="submit">S'abonner</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; <span id="year">2025</span> Langly - Tous droits réservés</p>
+      <div class="footer-bottom-links">
+        <a href="#">Conditions d'utilisation</a>
+        <a href="#">Politique de confidentialité</a>
+        <a href="#">Mentions légales</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/login.js"></script>
+</body>
+</html>
