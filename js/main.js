@@ -188,7 +188,7 @@ const initPageTransition = () => {
   });
   
   // Effet lors du clic sur les liens
-  const internalLinks = document.querySelectorAll('a[href^="./"], a[href^="index.html"], a[href^="lessons.html"], a[href^="about.html"], a[href^="contact.html"]');
+  const internalLinks = document.querySelectorAll('a[href^="./"], a[href^="index.html"], a[href^="lessons.html"], a[href^="about.html"], a[href^="contact.html"], a[href^="user.html"]');
   
   internalLinks.forEach(link => {
     link.addEventListener('click', (e) => {
@@ -204,31 +204,64 @@ const initPageTransition = () => {
   });
 };
 
-// ===== BOUTON SCROLL TO TOP =====
+// ===== BOUTON SCROLL TO TOP (CORRIGÉ) =====
 const createScrollToTopButton = () => {
+  // Vérifier si le bouton existe déjà
+  if (document.querySelector('.scroll-to-top')) {
+    return;
+  }
+
   // Créer le bouton
   const button = document.createElement('button');
   button.innerHTML = '↑';
   button.className = 'scroll-to-top';
   button.setAttribute('aria-label', 'Retour en haut');
+  button.setAttribute('type', 'button');
   document.body.appendChild(button);
   
-  // Afficher/masquer selon le scroll
-  window.addEventListener('scroll', () => {
-    if (window.pageYOffset > 300) {
+  // Fonction pour afficher/masquer le bouton
+  const toggleButtonVisibility = () => {
+    if (window.pageYOffset > 300 || document.documentElement.scrollTop > 300) {
       button.classList.add('visible');
     } else {
       button.classList.remove('visible');
     }
-  });
+  };
   
-  // Action au clic
-  button.addEventListener('click', () => {
+  // Écouter le scroll
+  window.addEventListener('scroll', toggleButtonVisibility);
+  
+  // Vérifier au chargement
+  toggleButtonVisibility();
+  
+  // Action au clic - CORRIGÉ
+  button.addEventListener('click', (e) => {
+    e.preventDefault();
+    
+    // Méthode 1 : Scroll fluide moderne
     window.scrollTo({
       top: 0,
+      left: 0,
       behavior: 'smooth'
     });
+    
+    // Méthode 2 : Fallback pour les navigateurs plus anciens
+    if (window.pageYOffset === 0 && document.documentElement.scrollTop === 0) {
+      return;
+    }
+    
+    // Animation manuelle si smooth scroll n'est pas supporté
+    const scrollStep = -window.pageYOffset / (500 / 15);
+    const scrollInterval = setInterval(() => {
+      if (window.pageYOffset !== 0) {
+        window.scrollBy(0, scrollStep);
+      } else {
+        clearInterval(scrollInterval);
+      }
+    }, 15);
   });
+  
+  console.log('✅ Bouton scroll-to-top créé et fonctionnel');
 };
 
 // ===== ANIMATIONS AU HOVER DES FEATURES =====
@@ -291,21 +324,3 @@ if ('loading' in HTMLImageElement.prototype) {
   script.src = 'https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js';
   document.body.appendChild(script);
 }
-
-require("dotenv").config();
-
-const http = require("http");
-const { neon } = require("@neondatabase/serverless");
-
-const sql = neon(process.env.DATABASE_URL);
-
-const requestHandler = async (req, res) => {
-  const result = await sql`SELECT version()`;
-  const { version } = result[0];
-  res.writeHead(200, { "Content-Type": "text/plain" });
-  res.end(version);
-};
-
-http.createServer(requestHandler).listen(3000, () => {
-  console.log("Server running at http://localhost:3000");
-});
