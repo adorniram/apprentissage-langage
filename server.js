@@ -10,7 +10,7 @@ const jwt = require('jsonwebtoken');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const JWT_SECRET = 'votre_secret_jwt_super_securise'; // À changer en production
+const JWT_SECRET = 'votre_secret_jwt_super_securise'; // ⚠️ À changer en production
 
 // Middleware
 app.use(cors());
@@ -22,7 +22,7 @@ const DB_PATH = path.join(__dirname, 'data', 'database.sqlite');
 
 async function initDb() {
   const dataDir = path.join(__dirname, 'data');
-  if (!fs.existsSync(dataDir)) fs.mkdirSync(dataDir);
+  if (!fs.existsSync(dataDir)) fs.mkdirSync(dataDir, { recursive: true });
 
   const db = await open({ filename: DB_PATH, driver: sqlite3.Database });
 
@@ -52,27 +52,29 @@ async function initDb() {
   `);
 
   // Créer un admin par défaut
-  const admin = await db.get("SELECT * FROM users WHERE role = 'admin'");
+  const admin = await db.get("SELECT * FROM users WHERE role = 'admin' LIMIT 1");
   if (!admin) {
     const adminPassword = await bcrypt.hash('admin123', 10);
     await db.run(
       'INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, ?)',
       ['Admin', 'admin@example.com', adminPassword, 'admin']
     );
-    console.log('Compte admin créé avec succès');
+    console.log('✅ Compte admin créé avec succès');
   }
 
   return db;
 }
 
 let db;
-initDb().then(database => {
-  db = database;
-  console.log('Base de données initialisée avec succès');
-}).catch(error => {
-  console.error('Erreur initialisation DB:', error);
-  process.exit(1);
-});
+initDb()
+  .then(database => {
+    db = database;
+    console.log('✅ Base de données initialisée avec succès');
+  })
+  .catch(error => {
+    console.error('❌ Erreur initialisation DB:', error);
+    process.exit(1);
+  });
 
 // Middleware d'authentification
 function authenticateToken(req, res, next) {
@@ -160,7 +162,7 @@ app.post('/api/auth/login', async (req, res) => {
   }
 });
 
-// Endpoints protégés d'administration
+// Profil utilisateur connecté
 app.get('/api/profile', authenticateToken, async (req, res) => {
   try {
     const user = await db.get(
@@ -179,6 +181,7 @@ app.get('/api/profile', authenticateToken, async (req, res) => {
   }
 });
 
+// Routes admin
 app.get('/api/admin/users', authenticateToken, isAdmin, async (req, res) => {
   try {
     const users = await db.all(
@@ -217,9 +220,9 @@ app.put('/api/admin/users/:id', authenticateToken, isAdmin, async (req, res) => 
 });
 
 app.delete('/api/admin/users/:id', authenticateToken, isAdmin, async (req, res) => {
-  const userId = req.params.id;
+  const userId = parseInt(req.params.id);
 
-  if (parseInt(userId) === req.user.id) {
+  if (userId === req.user.id) {
     return res.status(400).json({ error: 'Impossible de supprimer votre propre compte' });
   }
 
@@ -237,7 +240,7 @@ app.delete('/api/admin/users/:id', authenticateToken, isAdmin, async (req, res) 
   }
 });
 
-// API Messages
+// Messages
 app.post('/api/contact', async (req, res) => {
   const { name, email, phone, subject, message } = req.body || {};
 
@@ -299,7 +302,7 @@ app.get('/api/messages', authenticateToken, isAdmin, async (req, res) => {
   }
 });
 
-// Démarrage du serveur
+// Lancement du serveur
 app.listen(PORT, () => {
-  console.log(`Serveur démarré sur http://localhost:${PORT}`);
+  console.log(`🚀 Serveur démarré sur http://localhost:${PORT}`);
 });

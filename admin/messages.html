@@ -2,87 +2,50 @@
 <html lang="fr">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Admin - Messages</title>
-  <link rel="stylesheet" href="/css/styles.css" />
-  <style>
-    .admin-container { max-width:1100px; margin:3rem auto; padding:1rem; }
-    .messages-table { width:100%; border-collapse:collapse; margin-top:1rem; }
-    .messages-table th, .messages-table td { padding:0.6rem 0.8rem; border-bottom:1px solid #e5e7eb; text-align:left; }
-    .search-row { display:flex; gap:0.5rem; align-items:center; }
-    .msg-row-small { font-size:0.9rem; color:#6b7280; }
-  </style>
+  <title>Admin – Messages</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <!-- Tailwind CSS (via CDN pour le demo) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Votre CSS supplémentaire si besoin -->
 </head>
-<body>
-  <div class="admin-container">
-    <h1>Messages reçus</h1>
-    <p>Cette page récupère les messages via <code>/api/messages</code>. Elle est protégée par Basic Auth côté API.</p>
+<body class="bg-gray-100 font-sans antialiased">
 
-    <div class="search-row">
-      <input id="searchInput" placeholder="Rechercher par nom, email, sujet ou contenu" style="flex:1;padding:0.6rem;border-radius:8px;border:1px solid #d1d5db;" />
-      <button id="searchBtn" class="btn">Rechercher</button>
-      <button id="refreshBtn" class="btn">Actualiser</button>
-    </div>
+<div id="app" class="max-w-4xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
 
-    <div id="messagesWrap"></div>
+  <h1 class="text-3xl font-semibold text-gray-900 mb-4">Messages reçus</h1>
+
+  <p class="mb-6 text-sm text-gray-600">
+    Cette page récupère les messages via <code>/api/messages</code>.
+    L’accès est protégé par un token JWT stocké dans le navigateur.
+  </p>
+
+  <!-- Barre de recherche -->
+  <div class="flex space-x-2 mb-4">
+    <input id="searchInput"
+           type="text"
+           placeholder="Rechercher par nom, email, sujet ou contenu…"
+           class="flex-grow px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500">
+
+    <button id="searchBtn" class="px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700">
+      Rechercher
+    </button>
+
+    <button id="refreshBtn" class="px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300">
+      Actualiser
+    </button>
   </div>
 
-  <script>
-    async function fetchMessages(q) {
-      const url = '/api/messages' + (q ? '?search=' + encodeURIComponent(q) : '');
-      const res = await fetch(url, { credentials: 'include' });
-      if (res.status === 401) {
-        // Trigger browser basic auth prompt by requesting the resource directly
-        window.location.reload();
-        return;
-      }
-      const json = await res.json();
-      return json;
-    }
+  <!-- Conteneur des messages -->
+  <div id="messagesWrap"></div>
 
-    function renderMessages(list) {
-      const wrap = document.getElementById('messagesWrap');
-      if (!list.length) {
-        wrap.innerHTML = '<p>Aucun message.</p>';
-        return;
-      }
+  <!-- Zone d’erreur / feedback utilisateur -->
+  <div id="feedback" class="mt-4 hidden p-3 rounded-md text-sm"></div>
 
-      let html = '<table class="messages-table"><thead><tr><th>Id</th><th>Nom / Email</th><th>Sujet</th><th>Message</th><th>Reçu</th></tr></thead><tbody>';
-      list.forEach(m => {
-        html += `<tr>
-          <td>${m.id}</td>
-          <td><strong>${escapeHtml(m.name)}</strong><div class="msg-row-small">${escapeHtml(m.email)}${m.phone? ' • '+escapeHtml(m.phone):''}</div></td>
-          <td>${escapeHtml(m.subject||'—')}</td>
-          <td>${escapeHtml(m.message)}</td>
-          <td>${escapeHtml(m.receivedAt)}</td>
-        </tr>`;
-      });
-      html += '</tbody></table>';
-      wrap.innerHTML = html;
-    }
+</div>
 
-    function escapeHtml(str){
-      if(!str) return '';
-      return String(str).replace(/[&<>"']/g, s => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[s]));
-    }
-
-    document.getElementById('searchBtn').addEventListener('click', async () => {
-      const q = document.getElementById('searchInput').value.trim();
-      const json = await fetchMessages(q);
-      if (json && json.success) renderMessages(json.data);
-    });
-
-    document.getElementById('refreshBtn').addEventListener('click', async () => {
-      document.getElementById('searchInput').value = '';
-      const json = await fetchMessages();
-      if (json && json.success) renderMessages(json.data);
-    });
-
-    // Initial load
-    (async () => {
-      const json = await fetchMessages();
-      if (json && json.success) renderMessages(json.data);
-    })();
-  </script>
+<!-- Chargement du script externe -->
+<script src="/server.js" type="module"></script>
 </body>
 </html>
