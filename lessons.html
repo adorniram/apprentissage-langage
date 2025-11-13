@@ -25,7 +25,7 @@
   <!-- Hero Section Cours -->
   <section class="hero hero-small">
     <h2>Nos Cours Interactifs 📚</h2>
-    <p>Choisissez votre niveau et commencez à apprendre dès maintenant</p>
+    <p>Progressez à votre rythme avec nos cours organisés par niveau</p>
   </section>
 
   <!-- Filtres de cours -->
@@ -37,16 +37,6 @@
           <option value="all">Toutes les langues</option>
           <option value="french">Français</option>
           <option value="spanish">M'batto</option>
- 
-        </select>
-      </div>
-      <div class="filter-group">
-        <label for="level-filter">Niveau :</label>
-        <select id="level-filter" class="filter-select">
-          <option value="all">Tous les niveaux</option>
-          <option value="beginner">Débutant</option>
-          <option value="intermediate">Intermédiaire</option>
-          <option value="advanced">Avancé</option>
         </select>
       </div>
       <div class="filter-group">
@@ -61,175 +51,202 @@
     </div>
   </section>
 
-  <!-- Liste des cours -->
-  <section class="lessons-grid">
-    <!-- Cours 1 - Vidéo -->
-    <article class="lesson-card" data-language="english" data-level="beginner" data-type="video">
-      <div class="lesson-thumbnail">
-        <span class="lesson-badge video">🎥 Vidéo</span>
-        <div class="lesson-duration">15 min</div>
-      </div>
-      <div class="lesson-content">
-        <div class="lesson-meta">
-          <span class="lesson-language">🇬🇧 Anglais</span>
-          <span class="lesson-level beginner">Débutant</span>
+  <!-- NIVEAU DÉBUTANT -->
+  <section class="level-section level-beginner">
+    <div class="level-header">
+      <h2>🌱 Niveau Débutant</h2>
+      <p>Parfait pour commencer votre apprentissage. Apprenez les bases essentielles.</p>
+    </div>
+    
+    <div class="lessons-grid">
+      <!-- Cours Débutant 1 -->
+      <article class="lesson-card" data-language="english" data-level="beginner" data-type="video">
+        <div class="lesson-thumbnail">
+          <span class="lesson-badge video">🎥 Vidéo</span>
+          <div class="lesson-duration">15 min</div>
         </div>
-        <h3>Les bases de la conversation en anglais</h3>
-        <p>Apprenez les phrases essentielles pour vos premières conversations.</p>
-        <div class="lesson-stats">
-          <span>👥 2,450 élèves</span>
-          <span>⭐ 4.8/5</span>
+        <div class="lesson-content">
+          <div class="lesson-meta">
+            <span class="lesson-language">🇬🇧 Anglais</span>
+            <span class="lesson-level beginner">Débutant</span>
+          </div>
+          <h3>Les bases de la conversation en anglais</h3>
+          <p>Apprenez les phrases essentielles pour vos premières conversations.</p>
+          <div class="lesson-stats">
+            <span>👥 2,450 élèves</span>
+            <span>⭐ 4.8/5</span>
+          </div>
+          <button class="lesson-btn">Commencer le cours</button>
         </div>
-        <button class="lesson-btn">Commencer le cours</button>
-      </div>
-    </article>
+      </article>
 
-    <!-- Cours 2 - Audio -->
-    <article class="lesson-card" data-language="spanish" data-level="beginner" data-type="audio">
-      <div class="lesson-thumbnail">
-        <span class="lesson-badge audio">🎧 Audio</span>
-        <div class="lesson-duration">10 min</div>
-      </div>
-      <div class="lesson-content">
-        <div class="lesson-meta">
-          <span class="lesson-language">🇪🇸 Espagnol</span>
-          <span class="lesson-level beginner">Débutant</span>
+      <!-- Cours Débutant 2 -->
+      <article class="lesson-card" data-language="spanish" data-level="beginner" data-type="audio">
+        <div class="lesson-thumbnail">
+          <span class="lesson-badge audio">🎧 Audio</span>
+          <div class="lesson-duration">10 min</div>
         </div>
-        <h3>Prononciation espagnole pour débutants</h3>
-        <p>Maîtrisez les sons de base et l'accent espagnol authentique.</p>
-        <div class="lesson-stats">
-          <span>👥 1,890 élèves</span>
-          <span>⭐ 4.9/5</span>
+        <div class="lesson-content">
+          <div class="lesson-meta">
+            <span class="lesson-language">🇪🇸 M'batto</span>
+            <span class="lesson-level beginner">Débutant</span>
+          </div>
+          <h3>Prononciation M'batto pour débutants</h3>
+          <p>Maîtrisez les sons de base et l'accent M'batto authentique.</p>
+          <div class="lesson-stats">
+            <span>👥 1,890 élèves</span>
+            <span>⭐ 4.9/5</span>
+          </div>
+          <button class="lesson-btn">Commencer le cours</button>
         </div>
-        <button class="lesson-btn">Commencer le cours</button>
-      </div>
-    </article>
+      </article>
 
-    <!-- Cours 3 - Vidéo -->
-    <article class="lesson-card" data-language="french" data-level="intermediate" data-type="video">
-      <div class="lesson-thumbnail">
-        <span class="lesson-badge video">🎥 Vidéo</span>
-        <div class="lesson-duration">20 min</div>
-      </div>
-      <div class="lesson-content">
-        <div class="lesson-meta">
-          <span class="lesson-language">🇫🇷 Français</span>
-          <span class="lesson-level intermediate">Intermédiaire</span>
+      <!-- Cours Débutant 3 -->
+      <article class="lesson-card" data-language="german" data-level="beginner" data-type="audio">
+        <div class="lesson-thumbnail">
+          <span class="lesson-badge audio">🎧 Audio</span>
+          <div class="lesson-duration">12 min</div>
         </div>
-        <h3>Grammaire française : les temps du passé</h3>
-        <p>Comprenez et utilisez correctement l'imparfait et le passé composé.</p>
-        <div class="lesson-stats">
-          <span>👥 3,120 élèves</span>
-          <span>⭐ 4.7/5</span>
+        <div class="lesson-content">
+          <div class="lesson-meta">
+            <span class="lesson-language">🇩🇪 Allemand</span>
+            <span class="lesson-level beginner">Débutant</span>
+          </div>
+          <h3>Vocabulaire allemand du quotidien</h3>
+          <p>Les mots et expressions indispensables pour la vie de tous les jours.</p>
+          <div class="lesson-stats">
+            <span>👥 1,560 élèves</span>
+            <span>⭐ 4.6/5</span>
+          </div>
+          <button class="lesson-btn">Commencer le cours</button>
         </div>
-        <button class="lesson-btn">Commencer le cours</button>
-      </div>
-    </article>
+      </article>
 
-    <!-- Cours 4 - Audio -->
-    <article class="lesson-card" data-language="german" data-level="beginner" data-type="audio">
-      <div class="lesson-thumbnail">
-        <span class="lesson-badge audio">🎧 Audio</span>
-        <div class="lesson-duration">12 min</div>
-      </div>
-      <div class="lesson-content">
-        <div class="lesson-meta">
-          <span class="lesson-language">🇩🇪 Allemand</span>
-          <span class="lesson-level beginner">Débutant</span>
+      <!-- Cours Débutant 4 -->
+      <article class="lesson-card" data-language="japanese" data-level="beginner" data-type="video">
+        <div class="lesson-thumbnail">
+          <span class="lesson-badge video">🎥 Vidéo</span>
+          <div class="lesson-duration">18 min</div>
         </div>
-        <h3>Vocabulaire allemand du quotidien</h3>
-        <p>Les mots et expressions indispensables pour la vie de tous les jours.</p>
-        <div class="lesson-stats">
-          <span>👥 1,560 élèves</span>
-          <span>⭐ 4.6/5</span>
+        <div class="lesson-content">
+          <div class="lesson-meta">
+            <span class="lesson-language">🇯🇵 Japonais</span>
+            <span class="lesson-level beginner">Débutant</span>
+          </div>
+          <h3>Hiragana et Katakana : premiers pas</h3>
+          <p>Apprenez les deux systèmes d'écriture de base du japonais.</p>
+          <div class="lesson-stats">
+            <span>👥 2,780 élèves</span>
+            <span>⭐ 4.9/5</span>
+          </div>
+          <button class="lesson-btn">Commencer le cours</button>
         </div>
-        <button class="lesson-btn">Commencer le cours</button>
-      </div>
-    </article>
+      </article>
 
-    <!-- Cours 5 - Vidéo -->
-    <article class="lesson-card" data-language="japanese" data-level="beginner" data-type="video">
-      <div class="lesson-thumbnail">
-        <span class="lesson-badge video">🎥 Vidéo</span>
-        <div class="lesson-duration">18 min</div>
-      </div>
-      <div class="lesson-content">
-        <div class="lesson-meta">
-          <span class="lesson-language">🇯🇵 Japonais</span>
-          <span class="lesson-level beginner">Débutant</span>
+      <!-- Cours Débutant 5 -->
+      <article class="lesson-card" data-language="french" data-level="beginner" data-type="text">
+        <div class="lesson-thumbnail">
+          <span class="lesson-badge text">📝 Texte</span>
+          <div class="lesson-duration">8 min</div>
         </div>
-        <h3>Hiragana et Katakana : premiers pas</h3>
-        <p>Apprenez les deux systèmes d'écriture de base du japonais.</p>
-        <div class="lesson-stats">
-          <span>👥 2,780 élèves</span>
-          <span>⭐ 4.9/5</span>
+        <div class="lesson-content">
+          <div class="lesson-meta">
+            <span class="lesson-language">🇫🇷 Français</span>
+            <span class="lesson-level beginner">Débutant</span>
+          </div>
+          <h3>L'alphabet français et la prononciation</h3>
+          <p>Guide complet pour prononcer correctement chaque lettre.</p>
+          <div class="lesson-stats">
+            <span>👥 4,200 élèves</span>
+            <span>⭐ 4.9/5</span>
+          </div>
+          <button class="lesson-btn">Commencer le cours</button>
         </div>
-        <button class="lesson-btn">Commencer le cours</button>
-      </div>
-    </article>
+      </article>
+    </div>
+  </section>
 
-    <!-- Cours 6 - Audio -->
-    <article class="lesson-card" data-language="english" data-level="intermediate" data-type="audio">
-      <div class="lesson-thumbnail">
-        <span class="lesson-badge audio">🎧 Audio</span>
-        <div class="lesson-duration">14 min</div>
-      </div>
-      <div class="lesson-content">
-        <div class="lesson-meta">
-          <span class="lesson-language">🇬🇧 Anglais</span>
-          <span class="lesson-level intermediate">Intermédiaire</span>
+  <!-- NIVEAU INTERMÉDIAIRE -->
+  <section class="level-section level-intermediate">
+    <div class="level-header">
+      <h2>🚀 Niveau Intermédiaire</h2>
+      <p>Développez vos compétences et gagnez en confiance dans votre pratique.</p>
+    </div>
+    
+    <div class="lessons-grid">
+      <!-- Cours Intermédiaire 1 -->
+      <article class="lesson-card" data-language="french" data-level="intermediate" data-type="video">
+        <div class="lesson-thumbnail">
+          <span class="lesson-badge video">🎥 Vidéo</span>
+          <div class="lesson-duration">20 min</div>
         </div>
-        <h3>Business English : réunions professionnelles</h3>
-        <p>Vocabulaire et expressions pour briller dans vos réunions d'affaires.</p>
-        <div class="lesson-stats">
-          <span>👥 1,920 élèves</span>
-          <span>⭐ 4.8/5</span>
+        <div class="lesson-content">
+          <div class="lesson-meta">
+            <span class="lesson-language">🇫🇷 Français</span>
+            <span class="lesson-level intermediate">Intermédiaire</span>
+          </div>
+          <h3>Grammaire française : les temps du passé</h3>
+          <p>Comprenez et utilisez correctement l'imparfait et le passé composé.</p>
+          <div class="lesson-stats">
+            <span>👥 3,120 élèves</span>
+            <span>⭐ 4.7/5</span>
+          </div>
+          <button class="lesson-btn">Commencer le cours</button>
         </div>
-        <button class="lesson-btn">Commencer le cours</button>
-      </div>
-    </article>
+      </article>
 
-    <!-- Cours 7 - Vidéo -->
-    <article class="lesson-card" data-language="spanish" data-level="advanced" data-type="video">
-      <div class="lesson-thumbnail">
-        <span class="lesson-badge video">🎥 Vidéo</span>
-        <div class="lesson-duration">25 min</div>
-      </div>
-      <div class="lesson-content">
-        <div class="lesson-meta">
-          <span class="lesson-language">🇪🇸 Espagnol</span>
-          <span class="lesson-level advanced">Avancé</span>
+      <!-- Cours Intermédiaire 2 -->
+      <article class="lesson-card" data-language="english" data-level="intermediate" data-type="audio">
+        <div class="lesson-thumbnail">
+          <span class="lesson-badge audio">🎧 Audio</span>
+          <div class="lesson-duration">14 min</div>
         </div>
-        <h3>Espagnol d'Amérique Latine vs. Espagne</h3>
-        <p>Découvrez les différences culturelles et linguistiques.</p>
-        <div class="lesson-stats">
-          <span>👥 1,340 élèves</span>
-          <span>⭐ 4.7/5</span>
+        <div class="lesson-content">
+          <div class="lesson-meta">
+            <span class="lesson-language">🇬🇧 Anglais</span>
+            <span class="lesson-level intermediate">Intermédiaire</span>
+          </div>
+          <h3>Business English : réunions professionnelles</h3>
+          <p>Vocabulaire et expressions pour briller dans vos réunions d'affaires.</p>
+          <div class="lesson-stats">
+            <span>👥 1,920 élèves</span>
+            <span>⭐ 4.8/5</span>
+          </div>
+          <button class="lesson-btn">Commencer le cours</button>
         </div>
-        <button class="lesson-btn">Commencer le cours</button>
-      </div>
-    </article>
+      </article>
+    </div>
+  </section>
 
-    <!-- Cours 8 - Text -->
-    <article class="lesson-card" data-language="french" data-level="beginner" data-type="text">
-      <div class="lesson-thumbnail">
-        <span class="lesson-badge text">📝 Texte</span>
-        <div class="lesson-duration">8 min</div>
-      </div>
-      <div class="lesson-content">
-        <div class="lesson-meta">
-          <span class="lesson-language">🇫🇷 Français</span>
-          <span class="lesson-level beginner">Débutant</span>
+  <!-- NIVEAU AVANCÉ -->
+  <section class="level-section level-advanced">
+    <div class="level-header">
+      <h2>🏆 Niveau Avancé</h2>
+      <p>Perfectionnez votre maîtrise et atteignez un niveau expert.</p>
+    </div>
+    
+    <div class="lessons-grid">
+      <!-- Cours Avancé 1 -->
+      <article class="lesson-card" data-language="spanish" data-level="advanced" data-type="video">
+        <div class="lesson-thumbnail">
+          <span class="lesson-badge video">🎥 Vidéo</span>
+          <div class="lesson-duration">25 min</div>
         </div>
-        <h3>L'alphabet français et la prononciation</h3>
-        <p>Guide complet pour prononcer correctement chaque lettre.</p>
-        <div class="lesson-stats">
-          <span>👥 4,200 élèves</span>
-          <span>⭐ 4.9/5</span>
+        <div class="lesson-content">
+          <div class="lesson-meta">
+            <span class="lesson-language">🇪🇸 M'batto</span>
+            <span class="lesson-level advanced">Avancé</span>
+          </div>
+          <h3>M'batto : variations régionales</h3>
+          <p>Découvrez les différences culturelles et linguistiques.</p>
+          <div class="lesson-stats">
+            <span>👥 1,340 élèves</span>
+            <span>⭐ 4.7/5</span>
+          </div>
+          <button class="lesson-btn">Commencer le cours</button>
         </div>
-        <button class="lesson-btn">Commencer le cours</button>
-      </div>
-    </article>
+      </article>
+    </div>
   </section>
 
   <!-- Section CTA -->
@@ -244,9 +261,8 @@
   <!-- Footer -->
   <footer>
     <div class="footer-content">
-      <!-- Section À propos -->
       <div class="footer-section">
-        <h3>Langly</h3>
+        <h3>M'batto</h3>
         <p>Apprenez les langues de manière ludique et efficace avec nos cours interactifs gratuits.</p>
         <div class="social-links">
           <a href="#" aria-label="Facebook">f</a>
@@ -256,7 +272,6 @@
         </div>
       </div>
 
-      <!-- Section Liens rapides -->
       <div class="footer-section">
         <h3>Liens rapides</h3>
         <ul class="footer-links">
@@ -268,19 +283,17 @@
         </ul>
       </div>
 
-      <!-- Section Langues -->
       <div class="footer-section">
         <h3>Langues populaires</h3>
         <ul class="footer-links">
           <li><a href="#">Anglais</a></li>
-          <li><a href="#">Espagnol</a></li>
+          <li><a href="#">M'batto</a></li>
           <li><a href="#">Français</a></li>
           <li><a href="#">Allemand</a></li>
           <li><a href="#">Japonais</a></li>
         </ul>
       </div>
 
-      <!-- Section Newsletter -->
       <div class="footer-section">
         <h3>Newsletter</h3>
         <p>Recevez nos meilleures astuces d'apprentissage</p>
@@ -292,7 +305,7 @@
     </div>
 
     <div class="footer-bottom">
-    <p>&copy; <span id="year">2025</span> M'batto- Tous droits réservés</p>
+      <p>&copy; <span id="year">2025</span> M'batto - Tous droits réservés</p>
       <div class="footer-bottom-links">
         <a href="#">Conditions d'utilisation</a>
         <a href="#">Politique de confidentialité</a>
